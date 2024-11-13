@@ -1,0 +1,46 @@
+.sidebar {
+    padding: 1.25rem;
+    padding-top: 2rem;
+}
+
+.title {
+    color: rgba($color: #ffffff, $alpha: .8);
+    font-weight: 400;
+    font-family: Cormorant,serif;
+    letter-spacing: 0.1em;
+    font-size: 1.6rem;
+    text-align: left;
+}
+
+.menuList {
+    padding-top: 1.5rem;
+}
+
+.menuItem {
+    display: flex;
+    align-items: center;
+    border-radius: 0.375rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: #d1d5db;
+    font-size: 1.3rem;
+    gap: 1rem;
+    transition: background-color 0.3s ease;
+
+    &.gap {
+        margin-top: 2.25rem;
+    }
+
+    &:hover {
+        background-color: #616161;
+    }
+
+    img {
+        width: 1.9rem;
+        height: 1.9rem;
+    }
+
+    .menuTitle {
+        transition: opacity 0.3s ease;
+    }
+}

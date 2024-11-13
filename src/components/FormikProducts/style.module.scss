@@ -1,0 +1,93 @@
+.BoxGrid{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    margin-top: 40px; 
+    gap: 8px;
+}
+.BoxContent{
+    width: 100%;
+    padding-bottom: 1rem;
+}
+
+.imagePreviewContainer {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  gap: 10px;
+  border: 1px solid black;
+  min-height: 100px;
+}
+.imagePreviewContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 150px; /* Set a minimum height for the container */
+  position: relative;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.noImagesText {
+  font-size: 24px; /* Make the text big */
+  color: gray;
+  text-align: center;
+}
+
+.imagePreviewWrapper {
+  position: relative; /* Ensure this is relative for proper positioning */
+  width: 150px;
+  height: 150px;
+}
+
+.imagePreview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1px;
+  border: 2px solid rgb(255, 255, 255);
+  position: relative;
+  z-index: 1;
+}
+
+.imagePreviewContainer .imagePreviewWrapper .closeButton {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: white;
+  border-radius: 50%;
+  z-index: 2;
+  padding: 0;
+  transition: background-color 0.3s ease;
+}
+
+.imagePreviewContainer .imagePreviewWrapper .closeButton:hover {
+  background-color: black; /* Maintain white background on hover */
+  color: white;
+}
+
+input[type="file"] {
+  color: transparent;
+}
+
+input[type="file"]::file-selector-button {
+  color: black;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: lightgray;
+}
+
+
+
+.h1Text{
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    font-family: cormorant, serif;
+    font-weight: 500;
+    color: rgba(0, 8, 238, .6);
+}
