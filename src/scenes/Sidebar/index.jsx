@@ -12,7 +12,6 @@ import HyperPoint from '../images/HyperPoint.png'
 import styles from './style.module.scss';
 
 import { Link } from "react-router-dom";
-
 function Sidebar() {
   const imageSources = { 
     Chart_fill: chartFill,
