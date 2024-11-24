@@ -14,7 +14,7 @@ const favData = mockData.map((product) => product.favNumber);
 const accessData = mockData.map((product) => product.accessNumber);
 const boughtData = mockData.map((product) => product.boughtNumber);
 
-const Dashboard = () => {
+const Index = () => {
   return (
     <Box p={4} height="100vh" overflow="auto">
       <Typography variant="h4" gutterBottom>
@@ -105,4 +105,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Index;

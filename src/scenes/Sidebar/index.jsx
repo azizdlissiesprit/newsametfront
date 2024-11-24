@@ -28,11 +28,15 @@ function Sidebar() {
 
   const Menus = [
     { title: "Dashboard", src: "Chart_fill", to: "/" },
-    { title: "Analytics", src: "Chart", to: "/analytics" },
+    { title: "analytics", src: "Chart", to: "/analytics" },
     { title: "Mes Produits", src: "Folder", gap: true, to: "/Produits" },
     { title: "Gestion Produits", src: "Folder", to: "/AddProduits" },
     { title: "Hyper-Points", src: "Hyperpoint", to: "/AddHyperPointProduits" },
     { title: "Options", src: "Options", to: "/Options" },
+    { title: "Categories", src: "Categories", to: "/Categories" },
+    { title: "validations", src: "Chart", to: "/validations" },
+
+    { title: "users", src: "Chart", to: "/users" },
 
     { title: "Inbox", src: "Chat", gap: true, to: "/inbox" },
     { title: "Accounts", src: "User", to: "/accounts" },

@@ -1,14 +1,16 @@
 import {React, useEffect, useState} from 'react'
 import {Formik,FieldArray} from 'formik';
 import CloseIcon from '@mui/icons-material/Close';
-import { Checkbox, FormGroup, FormControlLabel, Box, Button, TextField, IconButton,Select, MenuItem,List, ListItem, Paper,Autocomplete  } from "@mui/material";
+import { Checkbox, FormGroup,Typography, FormControlLabel, Box, Button, TextField, IconButton,Select, MenuItem,List, ListItem, Paper,Autocomplete  } from "@mui/material";
 import * as yup from "yup";
 import styles from './style.module.scss'
  
 import { AjouterProduit } from '../../Api/Products';
 import { GetCategories,GetMainCategories,GetSubCategories } from '../../Api/Categories';
 const FormikProduits = () => {
- 
+  const [optionsb, setOptionsb] = useState([]); // List of options from the backend
+  const [selectedOption, setSelectedOption] = useState(''); // Selected option
+  const [addedOptions, setAddedOptions] = useState([]); // List of added options
   const [options, setoptions] = useState([]);
   const [options2, setoptions2] = useState([]);
   const [options3, setoptions3] = useState([]);
@@ -28,6 +30,14 @@ const FormikProduits = () => {
   const [valuesforselect2, setvaluesforselect2] = useState("");
   const [imagePreviews, setImagePreviews] = useState([]);
   var [inputValue, setInputValue] = useState('');
+  const handleAddOption = () => {
+    if (!selectedOption) return;
+
+    const optionToAdd = optionsb.find((option) => option._id === selectedOption);
+    if (optionToAdd && !addedOptions.some((opt) => opt._id === optionToAdd._id)) {
+      setAddedOptions([...addedOptions, optionToAdd]);
+    }
+  };
   const handleFileUpload = async (files) => {
     // Prepare FormData for files
     
@@ -91,6 +101,7 @@ const FormikProduits = () => {
   const handleAddCategory = async () => {
     const selectedCategory = valuesforselect;
     const selectedCategory2 = valuesforselect2;
+    console.log("hi",optionsb)
 
     if (selectedCategory && !options3.includes(selectedCategory)) {
       setoptions3(prevOptions => [...prevOptions, selectedCategory]);
@@ -111,6 +122,22 @@ const FormikProduits = () => {
   };
   
   useEffect(() => {
+    const fetchOptions = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/api/getoptions'); // Adjust the URL if needed
+        if (response.ok) {
+          const data = await response.json();
+          setOptionsb(data);
+          console.log("hi",optionsb)
+
+        } else {
+          console.error('Failed to fetch options.');
+        }
+      } catch (error) {
+        console.error('Error fetching options:', error);
+      }
+    };
+
     const fetchCategories = async () => {
       try {
         
@@ -124,6 +151,7 @@ const FormikProduits = () => {
       }
 
     };
+    fetchOptions();
 
     fetchCategories();
   }, []);
@@ -509,6 +537,56 @@ const FormikProduits = () => {
           </div>
           <div className={styles.BoxContent}>
         <h1 className={styles.h1Text}>Options</h1>
+
+
+
+        <Box p={4}>
+      <Typography variant="h5" gutterBottom>
+        Select and Add Options
+      </Typography>
+
+      {/* Dropdown to select an option */}
+      <Select
+        fullWidth
+        value={selectedOption}
+        onChange={(e) => setSelectedOption(e.target.value)}
+        displayEmpty
+        sx={{ mb: 2 }}
+      >
+        <MenuItem value="" disabled>
+          Select an option
+        </MenuItem>
+        {optionsb.map((option) => (
+          <MenuItem key={option._id} value={option._id}>
+            {option.nomOption} {/* Adjust based on your backend property */}
+          </MenuItem>
+        ))}
+      </Select>
+
+      {/* Button to add the selected option */}
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleAddOption}
+        sx={{ mb: 4 }}
+      >
+        Add Option
+      </Button>
+
+      {/* Display added options */}
+      <Typography variant="h6">Added Options:</Typography>
+      {addedOptions.length > 0 ? (
+        <Box>
+          {addedOptions.map((opt) => (
+            <Box key={opt._id} p={2} sx={{ backgroundColor: '#f0f0f0', mb: 1 }}>
+              <Typography>{opt.nomOption}</Typography>
+            </Box>
+          ))}
+        </Box>
+      ) : (
+        <Typography>No options added yet.</Typography>
+      )}
+    </Box>
         <FormGroup>
           
           <FormControlLabel
